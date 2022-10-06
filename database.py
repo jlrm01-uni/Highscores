@@ -25,6 +25,20 @@ class Database:
     def __init__(self):
         self.session = Session()
 
+    def add_test_highscores(self):
+        new = Highscores(username="Juan", score=1000)
+        other = Highscores(username="Kelvin", score=20)
+
+        d.session.add(new)
+        d.session.add(other)
+
+    def nuke_database(self):
+        Base.metadata.drop_all(engine)
+
+    def reset_database(self):
+        self.nuke_database()
+        self.add_test_highscores()
+
     def add_highscore(self, username, score):
         new_highscore = Highscores(username=username, score=score)
 
@@ -39,6 +53,6 @@ class Database:
 if __name__ == '__main__':
     d = Database()
 
-    d.create_db()
+    d.reset_database()
 
     pass
