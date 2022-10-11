@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Highscores</title>
+</head>
+<body>
+<p>Welcome to our magnificent server! a={{ a }}</p>
+<p>Today's chosen student is: {{ name }}</p>
+<img src="/static/pic1.jpg">
+{% for each_score in scores %}
+    <p>{{ each_score.username }}</p>
+    <p>{{ each_score.score }}</p>
+{% endfor %}
+</body>
+</html>
