@@ -1,6 +1,6 @@
 import logging
 
-from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy import create_engine, Column, Integer, String, desc
 from sqlalchemy.orm import declarative_base, sessionmaker
 import os
 
@@ -29,7 +29,7 @@ class Database:
         self.session = Session()
 
     def get_all_highscores(self):
-        return self.session.query(Highscores).all()
+        return self.session.query(Highscores).order_by(desc(Highscores.score)).limit(10).all()
 
     def add_test_highscores(self):
         new = Highscores(username="Juan", score=1000)

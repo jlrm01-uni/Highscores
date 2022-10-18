@@ -13,5 +13,11 @@ def main():
     return render_template("index.html", a=10, name="Kelvin", scores=scores)
 
 
+@app.route("/reset_database")
+def reset_database():
+    d.reset_database()
+    return "Everything's gone, chief!"
+
+
 if __name__ == '__main__':
     app.run(debug=True)
