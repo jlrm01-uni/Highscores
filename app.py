@@ -1,11 +1,10 @@
 from flask import Flask, render_template
-
+from livereload import Server
 from database import Database
 
 app = Flask(__name__)
 
 d = Database()
-
 
 @app.route("/")
 def main():
@@ -20,4 +19,8 @@ def reset_database():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.debug = True
+    server = Server(app.wsgi_app)
+    server.serve()
+
+    # app.run(debug=True)

@@ -1,2 +1,4 @@
 sqlalchemy~=1.4.41
 psycopg2~=2.9.3
+livereload~=2.6.3
+flask
