@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 d = Database()
 
+
 @app.route("/")
 def main():
     scores = d.get_all_highscores()
