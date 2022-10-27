@@ -19,6 +19,16 @@ def reset_database():
     return "Everything's gone, chief!"
 
 
+@app.route("/news")
+def news():
+    return render_template("news.html")
+
+
+@app.route("/highscores")
+def highscores():
+    return render_template("highscores.html")
+
+
 if __name__ == '__main__':
     app.debug = True
     server = Server(app.wsgi_app)
