@@ -9,8 +9,8 @@ d = Database()
 
 @app.route("/")
 def main():
-    scores = d.get_all_highscores()
-    return render_template("index.html", a=10, name="Kelvin", scores=scores)
+
+    return render_template("index.html", a=10, name="Kelvin")
 
 
 @app.route("/reset_database")
@@ -26,7 +26,8 @@ def news():
 
 @app.route("/highscores")
 def highscores():
-    return render_template("highscores.html")
+    scores = d.get_all_highscores()
+    return render_template("highscores.html", scores=scores)
 
 
 if __name__ == '__main__':

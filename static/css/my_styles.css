@@ -2,4 +2,32 @@ body {
     background: #0a58ca;
     font-family: 'Roboto Condensed', sans-serif;
         font-size: 48px;
+    color: #51d02e;
+}
+
+.navbar {
+    font-size: 4rem;
+    background: yellow;
+    color: yellow;
+}
+
+.navbar-brand {
+    font-size: 4rem;
+    color: yellow;
+}
+
+.nav-link {
+    color: pink;
+}
+
+a.nav-link.active {
+    color: peru;
+}
+
+.scores {
+    padding-left: 3.5rem;
+}
+
+.usernames {
+
 }
