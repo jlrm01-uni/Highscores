@@ -21,13 +21,34 @@ def reset_database():
 
 @app.route("/news")
 def news():
-    return render_template("news.html")
+    news = d.get_all_news()
+    return render_template("news.html", news=news)
+
+
+@app.route("/new_news")
+def new_news():
+    return render_template("new_news.html")
 
 
 @app.route("/highscores")
 def highscores():
     scores = d.get_all_highscores()
     return render_template("highscores.html", scores=scores)
+
+
+@app.route("/highscores_json")
+def highscores_json():
+    scores = d.get_all_highscores()
+
+    all_highscores = []
+
+    for each_score in scores:
+        user_score = each_score.score
+        username = each_score.username
+
+        all_highscores.append((username, user_score))
+
+    return dict(highscores=all_highscores)
 
 
 if __name__ == '__main__':

@@ -4,6 +4,9 @@ from sqlalchemy import create_engine, Column, Integer, String, desc
 from sqlalchemy.orm import declarative_base, sessionmaker
 import os
 
+HIGHSCORES_LIMIT = 10
+NEWS_LIMIT = 5
+
 connection_string = os.getenv("POSTGRES_URL")
 
 engine = create_engine(connection_string)
@@ -24,12 +27,26 @@ class Highscores(Base):
         return f"{self.username}: {self.score}"
 
 
+class News(Base):
+    __tablename__ = "news"
+
+    id = Column(Integer, primary_key=True)
+    title = Column(String)
+    content = Column(String)
+
+    def __repr__(self):
+        return f"{self.title}: {self.content[:20]}"
+
+
 class Database:
     def __init__(self):
         self.session = Session()
 
     def get_all_highscores(self):
-        return self.session.query(Highscores).order_by(desc(Highscores.score)).limit(10).all()
+        return self.session.query(Highscores).order_by(desc(Highscores.score)).limit(HIGHSCORES_LIMIT).all()
+
+    def get_all_news(self):
+        return self.session.query(News).limit(NEWS_LIMIT).all()
 
     def add_test_highscores(self):
         new = Highscores(username="Juan", score=1000)
@@ -58,6 +75,7 @@ class Database:
         self.nuke_database()
         self.create_db()
         self.add_test_highscores()
+        self.add_test_news()
 
     def add_highscore(self, username, score):
         new_highscore = Highscores(username=username, score=score)
@@ -68,6 +86,13 @@ class Database:
         Base.metadata.create_all(engine)
 
         logging.info("Database created!")
+
+    def add_test_news(self):
+        test_news = News(title="Greatest News Ever",
+                         content="Kelvin gets platinum in God of War")
+
+        self.session.add(test_news)
+        self.session.commit()
 
 
 if __name__ == '__main__':
