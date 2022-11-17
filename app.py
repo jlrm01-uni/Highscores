@@ -52,6 +52,9 @@ def highscores_json():
 
 @app.route("/post_news", methods=["POST"])
 def post_news():
+    title = request.form.get("news_title")
+    content = request.form.get("news_content")
+
     return "News created!"
 
 
