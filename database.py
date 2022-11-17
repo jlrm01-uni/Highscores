@@ -94,6 +94,12 @@ class Database:
         self.session.add(test_news)
         self.session.commit()
 
+    def add_new_news(self, title, content):
+        new_news = News(title=title, content=content)
+
+        self.session.add(new_news)
+        self.session.commit()
+
 
 if __name__ == '__main__':
     d = Database()

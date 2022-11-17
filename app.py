@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from livereload import Server
 from database import Database
 
@@ -9,7 +9,6 @@ d = Database()
 
 @app.route("/")
 def main():
-
     return render_template("index.html", a=10, name="Kelvin")
 
 
@@ -49,6 +48,11 @@ def highscores_json():
         all_highscores.append((username, user_score))
 
     return dict(highscores=all_highscores)
+
+
+@app.route("/post_news", methods=["POST"])
+def post_news():
+    return "News created!"
 
 
 if __name__ == '__main__':

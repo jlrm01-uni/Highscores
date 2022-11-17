@@ -11,8 +11,23 @@
 </head>
 <body>
 
- {% include "menu.html" %}
- 
+{% include "menu.html" %}
+
+<div class="container">
+    <form action="/post_news" method="post">
+        <div class="mb-3">
+            <label for="news_title" class="form-label">News Title</label>
+            <input type="text" class="form-control" id="news_title" name="news_title" placeholder="Enter the title here...">
+        </div>
+        <div class="mb-3">
+            <label for="news_content" class="form-label">News content</label>
+            <textarea class="form-control" id="news_content" name="news_content" rows="10" placeholder="Enter your content here"></textarea>
+        </div>
+        <button class="btn btn-warning" type="submit">Create news!</button>
+    </form>
+
+</div>
+
 <script src="/static/js/bootstrap.bundle.js"></script>
 </body>
 </html>
