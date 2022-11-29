@@ -1,6 +1,6 @@
 import logging
-
-from sqlalchemy import create_engine, Column, Integer, String, desc
+import arrow
+from sqlalchemy import create_engine, Column, Integer, String, desc, DateTime
 from sqlalchemy.orm import declarative_base, sessionmaker
 import os
 
@@ -33,6 +33,7 @@ class News(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String)
     content = Column(String)
+    date_created = Column(DateTime)
 
     def __repr__(self):
         return f"{self.title}: {self.content[:20]}"
@@ -88,14 +89,17 @@ class Database:
         logging.info("Database created!")
 
     def add_test_news(self):
+        now = arrow.utcnow().datetime
+
         test_news = News(title="Greatest News Ever",
-                         content="Kelvin gets platinum in God of War")
+                         content="Kelvin gets platinum in God of War",
+                         date_created=now)
 
         self.session.add(test_news)
         self.session.commit()
 
-    def add_new_news(self, title, content):
-        new_news = News(title=title, content=content)
+    def add_new_news(self, title, content, date):
+        new_news = News(title=title, content=content, date_created=date)
 
         self.session.add(new_news)
         self.session.commit()

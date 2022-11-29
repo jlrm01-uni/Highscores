@@ -13,16 +13,20 @@
 
     {% include "menu.html" %}
 
-    <h1>News</h1>
+    <div class="container">
+        <h1>News</h1>
 
-    {% for each_news in news %}
-        <h2>{{ each_news.title }}</h2>
-        <p>{{ each_news.content }}</p>
-    {% endfor %}
+        {% for each_news in news %}
+            <div class="news_item">
+                <h2>{{ each_news.title }}</h2>
+                <p>{{ each_news.content }}</p>
+            </div>
+        {% endfor %}
 
-    <a class="btn btn-primary"
-       role="button"
-       href="/new_news">Create news</a>
+        <a class="btn btn-primary"
+           role="button"
+           href="/new_news">Create news</a>
+    </div>
 
 <script src="/static/js/bootstrap.bundle.js"></script>
 </body>

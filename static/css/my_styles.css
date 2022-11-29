@@ -31,3 +31,8 @@ a.nav-link.active {
 .usernames {
 
 }
+
+.news_item {
+    background: #d63384;
+    padding: 20px;
+}

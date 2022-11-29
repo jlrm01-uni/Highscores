@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+import arrow
+from flask import Flask, render_template, request, redirect, url_for
 from livereload import Server
 from database import Database
 
@@ -54,8 +55,11 @@ def highscores_json():
 def post_news():
     title = request.form.get("news_title")
     content = request.form.get("news_content")
+    now = arrow.utcnow().datetime
 
-    return "News created!"
+    d.add_new_news(title, content, now)
+
+    return redirect(url_for('news'))
 
 
 if __name__ == '__main__':
